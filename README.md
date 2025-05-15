@@ -1,1 +1,1 @@
-Ini adalah Program dasar Golang dengan menggunakan Framework Go Fiber
+Ini adalah Program dasar Golang dengan menggunakan Framework Go Fiber.
