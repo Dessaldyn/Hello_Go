@@ -1,8 +1,7 @@
 package main
 
 import (
-	"encoding/json"
-	"net/http"
+	"github.com/gofiber/fiber/v2"
 )
 
 type User struct {
@@ -11,14 +10,13 @@ type User struct {
 	Age  int    `json:"age"`
 }
 
-func userHandler(w http.ResponseWriter, r *http.Request) {
-	user := User{ID: 1, Name: "Muha", Age: 21}
-
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(user)
-}
-
 func main() {
-	http.HandleFunc("/user", userHandler)
-	http.ListenAndServe(":3000", nil)
+	app := fiber.New()
+
+	app.Get("/user", func(c *fiber.Ctx) error {
+		user := User{ID: 1, Name: "Muha", Age: 21}
+		return c.JSON(user)
+	})
+
+	app.Listen(":3000")
 }
